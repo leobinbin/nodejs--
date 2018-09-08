@@ -13,11 +13,20 @@ const app = new Koa
 app.keys = ['我是一个大帅哥']
 
 //session的配置对象
-
+const CONFIG = {
+    key :'Sid',
+    maxAge :'36e5',
+    overwrite : true,
+    httpOnly : false,
+    // sigend :true,
+    rolling :true
+}
 
 //注册日志模块
+//app.use(logger())
 
 //注册session
+app.use(session(CONFIG,app))
 
 //配置koa-body处理post请求数据
 app.use(body())

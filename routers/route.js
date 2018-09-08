@@ -4,9 +4,10 @@ const Router = require('koa-router')
 const user = require('../control/user')
 const router = new Router
 
-router.get('/',async (ctx)=>{
+router.get('/', user.keepLog, async (ctx)=>{
     await ctx.render('index',{
-        title:"这是自定义的title传入首页pug"
+        title:"这是自定义的title传入首页pug",
+        session:ctx.session
     })
 })
 //动态路由
@@ -22,4 +23,5 @@ router.get(/^\/user\/(?=reg|login)/, async (ctx)=>{
 
 router.post('/user/reg' , user.reg)
 router.post('/user/login' , user.login)
+router.get('/user/logout' , user.logout)
 module.exports = router
