@@ -19,11 +19,7 @@ router.get(/^\/user\/(?=reg|login)/, async (ctx)=>{
     await ctx.render('register',{show})
 })
 
-router.post('/user/login' , async (ctx) => {
-    console.log(ctx.request.body)
-})
-router.post('/user/reg' , async (ctx) => {
-    console.log(ctx.request.body)
-})
+
+router.post('/user/reg' , user.reg)
 
 module.exports = router
