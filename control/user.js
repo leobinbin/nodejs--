@@ -60,3 +60,38 @@ exports.reg = async (ctx) => {
     })
 
 }
+
+exports.login = async (ctx) => {
+    //拿到post数据
+    const user = ctx.request.body
+    const username = user.username
+    const password = user.password
+
+    await new Promise((resolve,reject)=>{
+        User.find({username},(err,data)=>{
+            if(err)return reject(err)
+            if(data.length === 0)return reject('用户名不存在')
+            //把用户传过来的密码进行加密比对
+            if(data[0].password === encrypt(password)){
+                return resolve(data)
+            }
+            resolve('')
+
+        })
+    })
+    .then(async data => {
+        if(!data){
+            return ctx.render('isOK',{
+                status : '密码不正确，登录失败'
+            })
+        }
+        await ctx.render('isOK',{
+            status : '登录成功'
+        })
+    })
+    .catch(async err => {
+        await ctx.render('isOK',{
+            status : '登录失败'
+        })
+    })
+}

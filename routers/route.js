@@ -21,5 +21,5 @@ router.get(/^\/user\/(?=reg|login)/, async (ctx)=>{
 
 
 router.post('/user/reg' , user.reg)
-
+router.post('/user/login' , user.login)
 module.exports = router
