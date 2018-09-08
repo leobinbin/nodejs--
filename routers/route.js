@@ -1,7 +1,7 @@
 const Router = require('koa-router')
 
-
-
+//拿到操作user 表的逻辑对象
+const user = require('../control/user')
 const router = new Router
 
 router.get('/',async (ctx)=>{
@@ -17,6 +17,13 @@ router.get('/',async (ctx)=>{
 router.get(/^\/user\/(?=reg|login)/, async (ctx)=>{
     const show = /reg$/.test(ctx.path)
     await ctx.render('register',{show})
+})
+
+router.post('/user/login' , async (ctx) => {
+    console.log(ctx.request.body)
+})
+router.post('/user/reg' , async (ctx) => {
+    console.log(ctx.request.body)
 })
 
 module.exports = router
