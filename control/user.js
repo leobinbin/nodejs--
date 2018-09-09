@@ -91,10 +91,11 @@ exports.login = async (ctx) => {
             domain:'localhost',//主机名 
             path:'/',// 希望在访问哪个页面时被带过来
             maxAge: 36e5,
-            httpOnly: true, //不让客户端访问这个cookie
+            httpOnly: false, //不让客户端访问这个cookie
             overwrite: false, //不能被覆盖
             //signed :true //是否签名,默认为true
         })
+
         ctx.cookies.set('uid',data[0]._id,{
             domain:'localhost',//主机名 
             path:'/',// 希望在访问哪个页面时被带过来

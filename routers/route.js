@@ -2,6 +2,7 @@ const Router = require('koa-router')
 
 //拿到操作user 表的逻辑对象
 const user = require('../control/user')
+const article = require('../control/article')
 const router = new Router
 
 router.get('/', user.keepLog, async (ctx)=>{
@@ -24,4 +25,7 @@ router.get(/^\/user\/(?=reg|login)/, async (ctx)=>{
 router.post('/user/reg' , user.reg)
 router.post('/user/login' , user.login)
 router.get('/user/logout' , user.logout)
+//文章发表页面
+router.get('/article' ,user.keepLog, article.addPage )
+router.post('/article',user.keepLog , article.add)
 module.exports = router
