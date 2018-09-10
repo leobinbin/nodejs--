@@ -5,6 +5,10 @@ const UserSchema = new Schema({
     role: {
         type:String,
         default: 1
+    },
+    avatar: {
+        type: String,
+        default: '/avatar/default.jpg'
     }
 },{versionKey : false})
 module.exports = UserSchema
